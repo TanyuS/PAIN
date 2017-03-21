@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="127px" height="25px" viewBox="0 0 127 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="svg" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logo">
+            <g>
+                <circle id="Oval" fill="#FF0571" fill-rule="evenodd" cx="7" cy="10" r="7"></circle>
+                <text id="Body:-Copy-2" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="20" fill="#222222">
+                    <tspan x="21" y="15">AdvMusic.net</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,26 @@
+@(title: String, moreStyles: Html = Html(""), moreScripts: Html = Html(""))(content: Html)
+@moreScripts = {
+	<script type='text/javascript' src='../scripts/build.js'></script>
+}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title</title>
+        <meta charset="utf-8" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans:700" rel="stylesheet">
+        <link type="text/css" rel='stylesheet' href="../../public/css/jquery-ui.css">
+        <link type="text/css" rel='stylesheet' href="../../public/css/jquery-ui-custom.css">
+        <link type="text/css" rel='stylesheet' href="../../public/css/base.css">
+        <link type="text/css" rel='stylesheet' href="../../public/css/header.css">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+        @moreStyles
+    </head>
+    <body >
+        @views.html.header()
+        @content
+        @moreScripts
+        @views.html.footer()
+        <script src="../../public/scriptsBuild/common.js"></script>
+    </body>
+</html>

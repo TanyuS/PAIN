@@ -1,0 +1,69 @@
+@(title: String, regForm: Form[FormDataUser])
+@styles = {
+    <link type="text/css" rel='stylesheet' href="/assets/_/css/main.css">
+    <link type="text/css" rel='stylesheet' href="/assets/_/css/main-mobile.css">
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Организуем концерты. Рассказываем о джазе"/>
+    <meta name="twitter:image" content="/assets/images/sharejazz.png"/>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Организуем концерты. Рассказываем о джазе" />
+    <meta property="og:image" content="/assets/images/sharejazz.png" />
+    <meta property="og:image:secure_url" content="/assets/images/sharejazz.png" />
+    <meta property="og:image:type" content="image/jpeg" />
+
+    <meta property="og:url" content="https://jazz.zaycev.net" />
+    <link href="https://jazz.zaycev.net/assets/images/sharejazz.png" rel="image_src" id="social-share-image"/>
+
+}
+@scripts = {
+    <script type='text/javascript' src='public/scriptsBuild/main.js'></script>
+}
+@main(title, styles, scripts) {
+    <h1>☯A D V M U S I C☯</h1>
+    <form method="post" action="@routes.IndexController.registration">
+        <div class="row column">
+            <label>Name
+                <input type="text" name="name" value="" placeholder="name" required>
+                @regForm.error("name").map { formError =>
+                    <span class="form-error is-visible">@formError.message</span>
+                }
+            </label>
+        </div>
+        <div class="row column">
+            <label>Email
+                <input type="email" name="email" value="" placeholder="email" required>
+                @regForm.error("email").map { formError =>
+                    <span class="form-error is-visible">@formError.message</span>
+                }
+            </label>
+        </div>
+        <div class="row column">
+            <label>contactType
+                <input type="text" name="contactType" value="" placeholder="contactType">
+                @regForm.error("contactType").map { formError =>
+                    <span class="form-error is-visible">@formError.message</span>
+                }
+            </label>
+        </div>
+        <div class="row column">
+            <label>identity
+                <input type="text" name="identity" value="" placeholder="identity">
+                @regForm.error("identity").map { formError =>
+                    <span class="form-error is-visible">@formError.message</span>
+                }
+            </label>
+        </div>
+
+        <div class="row">
+            <div class="large-6 medium-10 small-12 large-centered medium-centered columns">
+                <div class="row">
+                    <div class="small-6 columns">
+                        <button type="submit" class="button expanded success">Z A R E G A TZ A</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+}
