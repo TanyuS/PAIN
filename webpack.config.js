@@ -2,11 +2,8 @@
 
 const NODE_ENV = process.env.NODE_ENV || "development";
 const webpack = require("webpack");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+//const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const lessLoader = ExtractTextPlugin.extract(
-		"css?sourceMap!less?sourceMap"
-);
 
 module.exports = {
 
@@ -44,31 +41,30 @@ module.exports = {
 		new webpack.optimize.CommonsChunkPlugin({
 			name: "common"
 		}),
-		new ExtractTextPlugin("public/css/styles.css")
+		//new ExtractTextPlugin("public/css/styles.css")
 	],
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.js$/,
 				exclude: 'node_modules',
 				loader: 'babel-loader'
 			},
 			{
-				test: /\.less$/,
-				loader: ExtractTextPlugin.extract(
-						'css?sourceMap!' +
-						'less?sourceMap'
-				),
+				test: /\.less$/i,
+				use: [{
+					loader: "style-loader" // creates style nodes from JS strings
+				}, {
+					loader: "css-loader" // translates CSS into CommonJS
+				}, {
+					loader: "less-loader" // compiles Less to CSS
+				}],
 				exclude: /node_modules/,
 				include: [
 					__dirname + "app/less"
 				]
 			},
-			{
-				test: /\.css/,
-				loader: "style!css!autoprefixer?browsers=last 2 versions"
-			},
-			{ test: /\.(eot|svg|ttf|woff|woff2)$/, exclude: /node_modules/, loader: "file" },
+			{ test: /\.(eot|svg|ttf|woff|woff2)$/, exclude: /node_modules/, loader: "file-loader" }
 		]
 	}
 };
