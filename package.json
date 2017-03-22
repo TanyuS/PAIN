@@ -7,17 +7,18 @@
     "autoprefixer": "^6.7.7",
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
-    "babel-runtime": "^6.23.0",
     "babel-preset-env": "^1.2.2",
+    "babel-runtime": "^6.23.0",
     "css-loader": "^0.27.3",
     "extract-text-webpack-plugin": "^2.1.0",
     "less": "^2.7.2",
-    "less-loader": "^4.0.0",
-    "webpack": "^2.2.1"
+    "less-loader": "^4.0.2",
+    "style-loader": "^0.15.0",
+    "webpack": "^2.3.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack"
   },
   "repository": {
     "type": "git",

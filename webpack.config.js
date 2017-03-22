@@ -2,8 +2,8 @@
 
 const NODE_ENV = process.env.NODE_ENV || "development";
 const webpack = require("webpack");
-//const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
+const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
 
@@ -32,7 +32,6 @@ module.exports = {
 		moduleExtensions: ["*-loader", "*"]
 	},
 	plugins: [
-
 		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.DefinePlugin({
 			NODE_ENV: JSON.stringify(NODE_ENV),
@@ -41,42 +40,42 @@ module.exports = {
 		new webpack.optimize.CommonsChunkPlugin({
 			name: "common"
 		}),
-		//new ExtractTextPlugin("public/css/styles.css")
+		new ExtractTextPlugin("public/css/styles.css")
 	],
 	module: {
 		rules: [
 			{
 				test: /\.js$/,
-				exclude: 'node_modules',
+				exclude: path.resolve('./node_modules'),
 				loader: 'babel-loader'
 			},
 			{
 				test: /\.less$/i,
-				use: [{
-					loader: "style-loader" // creates style nodes from JS strings
-				}, {
-					loader: "css-loader" // translates CSS into CommonJS
-				}, {
-					loader: "less-loader" // compiles Less to CSS
-				}],
-				exclude: /node_modules/,
-				include: [
-					__dirname + "app/less"
-				]
+				use: ExtractTextPlugin.extract({
+					use: [{
+						loader: "css-loader" // translates CSS into CommonJS
+					}, {
+						loader: "less-loader" // compiles Less to CSS
+					}],
+					fallback: 'style-loader'
+				})
 			},
-			{ test: /\.(eot|svg|ttf|woff|woff2)$/, exclude: /node_modules/, loader: "file-loader" }
+			{
+				test: /\.(eot|svg|ttf|woff|woff2)$/,
+				loader: "file-loader"
+			}
 		]
 	}
 };
 
 if (NODE_ENV == 'production') {
 	module.exports.plugins.push(
-			new webpack.optimize.UglifyJsPlugin({
-				compress: {
-					warnings: false,
-					drop_console: true,
-					unsafe: true
-				}
-			})
+		new webpack.optimize.UglifyJsPlugin({
+			compress: {
+				warnings: false,
+				drop_console: true,
+				unsafe: true
+			}
+		})
 	)
 }
