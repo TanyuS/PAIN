@@ -2,7 +2,4 @@
 
 import "../less/base.less";
 
-var stickymenu = require("./stickymenu");
-
-stickymenu();
-exports.stickymenu = stickymenu;
+import '../vendor/jquery-ui/index';

@@ -13,7 +13,7 @@ module.exports = {
 		stat: "./app/scripts/stat"
 	},
 	output: {
-		path: __dirname + '/public/scriptsBuild',
+		path: __dirname + '/public',
 		filename: "[name].js",
 		library: "[name]"
 	},
@@ -40,7 +40,10 @@ module.exports = {
 		new webpack.optimize.CommonsChunkPlugin({
 			name: "common"
 		}),
-		new ExtractTextPlugin("../css/styles.css")
+		new ExtractTextPlugin({
+			filename: "[name].css",
+			allChunks: true
+		})
 	],
 	module: {
 		rules: [
@@ -50,7 +53,14 @@ module.exports = {
 				loader: 'babel-loader'
 			},
 			{
-				test: /\.less$/i,
+				test: /\.css$/,
+				use: ExtractTextPlugin.extract({
+					use: 'css-loader',
+					fallback: 'style-loader'
+				})
+			},
+			{
+				test: /\.less$/,
 				use: ExtractTextPlugin.extract({
 					use: [{
 						loader: "css-loader" // translates CSS into CommonJS
@@ -61,10 +71,18 @@ module.exports = {
 				})
 			},
 			{
+				test: /\.(png|jpg|jpeg)$/,
+				loader: 'url-loader' // url-loader may work better for small assets
+			},
+			{
 				test: /\.(eot|svg|ttf|woff|woff2)$/,
 				loader: "file-loader"
 			}
 		]
+	},
+	stats: {
+		children: false,
+		maxModules: 0,
 	}
 };
 
