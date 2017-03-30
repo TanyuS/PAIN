@@ -40,7 +40,7 @@ module.exports = {
 		new webpack.optimize.CommonsChunkPlugin({
 			name: "common"
 		}),
-		new ExtractTextPlugin("public/css/styles.css")
+		new ExtractTextPlugin("../css/styles.css")
 	],
 	module: {
 		rules: [
